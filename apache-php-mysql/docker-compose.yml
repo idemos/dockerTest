@@ -1,0 +1,24 @@
+version: '0.1'
+
+services:
+  web:
+    build: './apache-php/'
+    container_name: apache-php-container
+    volumes:
+      - ./src/:/var/www/html/
+    links:
+      - mysql
+    ports:
+      - "8080:80"
+    tty: true
+  mysql:
+    image: mysql:latest
+    container_name: mysql-container
+    restart: 'always'
+    ports:
+      - "9906:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: "dedalo"
+      MYSQL_DATABASE: "test_db"
+      MYSQL_USER: "devuser"
+      MYSQL_PASSWORD: "devpass"
