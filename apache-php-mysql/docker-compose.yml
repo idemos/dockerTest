@@ -15,6 +15,8 @@ services:
     image: mysql:latest
     container_name: mysql-container
     restart: 'always'
+    volumes:
+      - ./storage/dbdata:/var/lib/mysql
     ports:
       - "9906:3306"
     environment:
